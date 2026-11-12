@@ -1,0 +1,685 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   HOMEFIX ADMIN PANEL
+   Sidebar, layout, tabel, form, dan responsivitas
+   ===================================================== */
+
+/* ---------- Layout dasar ---------- */
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #f6f8f7;
+    color: #1e293b;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* ---------- Sidebar ---------- */
+
+.hf-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 260px;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: #10251d;
+    color: #d5e3db;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    scrollbar-width: thin;
+    scrollbar-color: #355346 #10251d;
+}
+
+/* ---------- Brand ---------- */
+
+.hf-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+    min-height: 96px;
+    padding: 22px 22px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.hf-brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    background: #16845b;
+    border-radius: 13px;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hf-brand-icon:hover {
+    background: #1b9b6b;
+    transform: translateY(-1px);
+}
+
+.hf-brand-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.hf-brand-text {
+    min-width: 0;
+}
+
+.hf-brand-name {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+    text-decoration: none;
+}
+
+.hf-brand-name span {
+    color: #5ee0a4;
+}
+
+.hf-brand-text p {
+    margin: 5px 0 0;
+    color: #8ba497;
+    font-size: 12px;
+}
+
+/* ---------- Navigasi ---------- */
+
+.hf-sidebar-nav {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 27px 15px 24px;
+}
+
+.hf-nav-heading {
+    margin: 0 10px 12px;
+
+    color: #7f998a;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.hf-nav-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    min-height: 48px;
+    padding: 12px 13px;
+
+    color: #c3d2c9;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.hf-nav-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.hf-nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.065);
+}
+
+.hf-nav-link.is-active {
+    color: #ffffff;
+    font-weight: 700;
+    background: #167650;
+    border-color: rgba(110, 231, 183, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.hf-nav-link.is-active svg {
+    opacity: 1;
+}
+
+.hf-active-indicator {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    margin-left: auto;
+
+    background: #a7f3d0;
+    border-radius: 50%;
+}
+
+/* ---------- Profil dan logout ---------- */
+
+.hf-sidebar-bottom {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding: 17px 15px 15px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.hf-admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 0;
+    margin-bottom: 12px;
+    padding: 11px;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.045);
+    border-radius: 12px;
+}
+
+.hf-admin-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+
+    color: #155b40;
+    background: #d1fae5;
+    border-radius: 50%;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.hf-admin-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.hf-admin-info p {
+    overflow: hidden;
+    margin: 0;
+
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hf-admin-info span {
+    display: block;
+    margin-top: 4px;
+    color: #91a99b;
+    font-size: 11px;
+}
+
+.hf-logout-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+
+    color: #c7d5cc;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.hf-logout-button svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+}
+
+.hf-logout-button:hover {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.11);
+    border-color: rgba(248, 113, 113, 0.12);
+}
+
+.hf-sidebar-version {
+    margin: 15px 0 0;
+    color: #6f8a7a;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-align: center;
+}
+
+/* ---------- Konten utama semua halaman admin ---------- */
+
+.hf-admin-content {
+    width: calc(100% - 260px);
+    min-width: 0;
+    min-height: 100vh;
+
+    margin-left: 260px;
+    padding: 30px;
+
+    background: #f6f8f7;
+}
+
+/* ---------- Tabel ---------- */
+
+.hf-admin-content table {
+    border-collapse: collapse;
+}
+
+.hf-admin-content th {
+    white-space: nowrap;
+}
+
+.hf-admin-content tbody tr {
+    transition: background 0.15s ease;
+}
+
+/* ---------- Form ---------- */
+
+.hf-admin-content input:not([type="checkbox"]):not([type="radio"]),
+.hf-admin-content select,
+.hf-admin-content textarea {
+    max-width: 100%;
+}
+
+.hf-admin-content input:focus,
+.hf-admin-content select:focus,
+.hf-admin-content textarea:focus {
+    outline-color: #16845b;
+}
+
+/* ---------- Responsif tablet ---------- */
+
+@media (max-width: 1024px) {
+    .hf-sidebar {
+        width: 235px;
+    }
+
+    .hf-sidebar-brand {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 235px);
+        margin-left: 235px;
+        padding: 24px;
+    }
+}
+
+/* ---------- Responsif layar kecil ---------- */
+
+@media (max-width: 767px) {
+    .hf-sidebar {
+        width: 205px;
+    }
+
+    .hf-sidebar-brand {
+        gap: 9px;
+        min-height: 82px;
+        padding: 17px 13px;
+    }
+
+    .hf-brand-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hf-brand-icon svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .hf-brand-name {
+        font-size: 18px;
+    }
+
+    .hf-sidebar-nav {
+        padding: 22px 10px;
+    }
+
+    .hf-nav-link {
+        gap: 10px;
+        min-height: 44px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .hf-sidebar-bottom {
+        padding: 12px 10px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 205px);
+        margin-left: 205px;
+        padding: 16px;
+    }
+}
+
+/* ---------- Responsif ponsel sangat kecil ---------- */
+
+@media (max-width: 380px) {
+    .hf-sidebar {
+        width: 175px;
+    }
+
+    .hf-sidebar-brand {
+        gap: 8px;
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+
+    .hf-brand-name {
+        font-size: 16px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 175px);
+        margin-left: 175px;
+        padding: 12px;
+    }
+}
+
+/* ==================================================
+   HOMEFIX ADMIN - SHARED CSS
+   ================================================== */
+
+body {
+    background: #f6f8f7;
+    color: #1e293b;
+}
+
+.hf-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 260px;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: #10251d;
+    color: #d5e3db;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    scrollbar-width: thin;
+    scrollbar-color: #355346 #10251d;
+}
+
+.hf-admin-content {
+    width: calc(100% - 260px);
+    min-width: 0;
+    min-height: 100vh;
+    margin-left: 260px;
+    padding: 30px;
+    background: #f6f8f7;
+}
+
+.hf-stat-card {
+    min-width: 0;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.025);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.hf-stat-card:hover {
+    border-color: #c5e8d7;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+    transform: translateY(-2px);
+}
+
+.hf-stat-label {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+}
+
+.hf-stat-value {
+    margin-top: 17px;
+    color: #0f172a;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+
+.hf-stat-description {
+    margin-top: 9px;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.hf-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 12px;
+}
+
+.hf-stat-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.hf-stat-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: #047857;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.hf-stat-link:hover {
+    color: #065f46;
+}
+
+.hf-panel {
+    min-width: 0;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.025);
+}
+
+.hf-admin-content table {
+    border-collapse: collapse;
+}
+
+.hf-admin-content th {
+    white-space: nowrap;
+}
+
+.hf-admin-content td {
+    vertical-align: middle;
+}
+
+.hf-admin-content a:focus-visible,
+.hf-sidebar a:focus-visible,
+.hf-sidebar button:focus-visible {
+    outline: 2px solid #34d399;
+    outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+    .hf-sidebar {
+        width: 235px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 235px);
+        margin-left: 235px;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hf-sidebar {
+        width: 205px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 205px);
+        margin-left: 205px;
+        padding: 16px;
+    }
+
+    .hf-stat-card {
+        padding: 17px;
+    }
+
+    .hf-panel {
+        padding: 17px;
+    }
+
+    .hf-panel.overflow-hidden {
+        padding: 0;
+    }
+
+    .hf-stat-value {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 380px) {
+    .hf-sidebar {
+        width: 175px;
+    }
+
+    .hf-admin-content {
+        width: calc(100% - 175px);
+        margin-left: 175px;
+        padding: 12px;
+    }
+
+    .hf-stat-card,
+    .hf-panel {
+        padding: 13px;
+    }
+}
+
+/* Panel dan statistik halaman admin HomeFix */
+.hf-panel,
+.hf-stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+
+.hf-panel {
+    padding: 24px;
+}
+
+.hf-stat-card {
+    padding: 20px;
+}
+
+.hf-stat-label {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hf-stat-value {
+    margin-top: 10px;
+    color: #0f172a;
+    font-size: 30px;
+    font-weight: 750;
+}
+
+.hf-stat-description {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+@media (max-width: 640px) {
+    .hf-panel {
+        padding: 16px;
+    }
+}
